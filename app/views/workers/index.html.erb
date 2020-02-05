@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="card-deck">
+        <% @workers.each do |worker| %>
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://s3.envato.com/files/238377394/Warh_osl2_%20008.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><%= worker.nombre %></h5>
+                    <p class="card-text">
+                        <ul>
+                            <li>NSS: <%= worker.nss %></li>
+                            <li>RFC: <%= worker.rfc %></li>
+                            <li>CURP: <%= worker.curp %></li>
+                        <ul>
+                    </p>
+                    <a href="#" class="btn btn-primary">Mas Informacion</a>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

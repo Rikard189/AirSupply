@@ -1,0 +1,47 @@
+<h1>Workers#new</h1>
+<p>Find me in app/views/workers/new.html.erb</p>
+
+
+<%= form_for(@worker, url: {action: :create}) do |worker_form|%>
+        <div>
+            <%= worker_form.label :nombre, 'Nombre Completo'%><br>
+            <%= worker_form.text_field :nombre, required: true %>
+        </div>
+        <div>
+            <%= worker_form.label :nss %><br>
+            <%= worker_form.text_field :nss, required: true %>
+        </div>
+        <div>
+            <%= worker_form.label :rfc %><br>
+            <%= worker_form.text_field :rfc, required: true %>
+        </div>
+        <div>
+            <%= worker_form.label :curp %><br>
+            <%= worker_form.text_field :curp, required: true %>
+        </div>
+        <div>
+            <%= worker_form.label :tel %><br>
+            <%= worker_form.text_field :tel, required: true %>
+        </div>
+        <div>
+            <%= worker_form.label :cel %><br>
+            <%= worker_form.text_field :cel, required: true %>
+        </div>
+        <div>
+            <%= worker_form.label :fecha_nacimiento %><br>
+            <%= worker_form.date_field :fecha_nacimiento, required: true %>
+        </div>
+        <div>
+            <%= worker_form.label :fecha_ingreso %><br>
+            <%= worker_form.date_field :fecha_ingreso, required: true %>
+        </div>
+        <div>
+            <%= worker_form.label :sdi %><br>
+            <%= worker_form.number_field :sdi, required: true %>
+        </div>
+        <div>
+            <%= worker_form.label :sd %><br>
+            <%= worker_form.number_field :sd, required: true %>
+        </div>
+        <%= worker_form.submit "Guardar Trabajador", class: "button primary"%>
+<% end %>

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  nss: MyString
+  rfc: MyString
+  curp: MyString
+  tel: MyString
+  cel: MyString
+  fecha_nacimiento: 2020-02-04
+  fecha_ingreso: 2020-02-04
+  sdi: 1.5
+  sd: 1.5
+
+two:
+  nombre: MyString
+  nss: MyString
+  rfc: MyString
+  curp: MyString
+  tel: MyString
+  cel: MyString
+  fecha_nacimiento: 2020-02-04
+  fecha_ingreso: 2020-02-04
+  sdi: 1.5
+  sd: 1.5

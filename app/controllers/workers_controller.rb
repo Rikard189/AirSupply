@@ -10,7 +10,7 @@ class WorkersController < ApplicationController
   def create
     @worker = Worker.new(worker_params)
     if @worker.save
-      redirect_to workers_index_path
+      redirect_to workers_path
     else
       render 'new'
     end

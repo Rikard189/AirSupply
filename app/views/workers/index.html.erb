@@ -1,7 +1,11 @@
-<div class="container">
-    <div class="card-deck">
+<div class="container workers">
+    <div class="header">
+        <h1>Trabajadores</h1>
+        <%= button_to "Nuevo Trabajador", new_worker_path, method: :get ,class: "btn btn-success"%>
+    </div>
+    <div class="card-columns">
         <% @workers.each do |worker| %>
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <img class="card-img-top" src="https://s3.envato.com/files/238377394/Warh_osl2_%20008.jpg" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><%= worker.nombre %></h5>

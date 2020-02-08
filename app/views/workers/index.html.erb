@@ -6,7 +6,8 @@
     <div class="card-columns">
         <% @workers.each do |worker| %>
             <div class="card">
-                <img class="card-img-top" src="https://s3.envato.com/files/238377394/Warh_osl2_%20008.jpg" alt="Card image cap">
+                <%# <img class="card-img-top" src="https://s3.envato.com/files/238377394/Warh_osl2_%20008.jpg" alt="Card image cap"> %>
+                <%= image_tag(worker.avatar_url.to_s, class: "card-img-top", alt: "Imagen Trabajador") %>
                 <div class="card-body">
                     <h5 class="card-title"><%= worker.nombre %></h5>
                     <p class="card-text">

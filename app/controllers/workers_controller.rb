@@ -21,7 +21,8 @@ class WorkersController < ApplicationController
   def worker_params
     params.require(:worker).permit(
       :nombre, :nss, :rfc, :curp, :tel, :cel, 
-      :fecha_nacimiento, :fecha_ingreso, :sdi, :sd
+      :fecha_nacimiento, :fecha_ingreso, :sdi, 
+      :sd, :avatar, {identification: []}
     )
   end 
 end

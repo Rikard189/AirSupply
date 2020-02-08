@@ -46,6 +46,20 @@
                 <%= worker_form.number_field :sd, required: true, class: "form-control", placeholder: "SD" %>
             </div>
         </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <%= worker_form.label :avatar, "Imagen" %><br>
+                <%= worker_form.file_field :avatar, required: true, class: "form-control" %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :identification, "INE/IFE" %><br>
+                <%= worker_form.file_field :identification, multiple: true ,required: true, class: "form-control" %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :proof_address, "Comprobante de Domicilio" %><br>
+                <%= worker_form.file_field :proof_address, multiple: true ,required: true, class: "form-control" %>
+            </div>
+        </div>
         <%= worker_form.submit "Guardar Trabajador", class: "btn btn-primary"%>
     <% end %>
 </div>

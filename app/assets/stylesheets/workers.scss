@@ -10,6 +10,11 @@
         align-items: center;
         justify-content: space-between;
     }
+
+    .card-img-top {
+        height: 100%;
+        max-height: 354px;
+    }
 }
 
 .new-worker {

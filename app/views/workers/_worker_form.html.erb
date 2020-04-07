@@ -1,0 +1,151 @@
+<div class="new-worker container">
+    <%= form_for(@worker, url: {action: action_type}) do |worker_form|%>
+        <h2>Informacion de Trabajador</h2>
+        <div class="form-group">
+            <%= worker_form.label :nombre_completo, 'Nombre Completo'%><br>
+            <%= worker_form.text_field :nombre_completo, required: true, class: "form-control", placeholder: "Nombre Completo" %>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <%= worker_form.label :nss, "NSS" %><br>
+                <%= worker_form.text_field :nss, required: true, class: "form-control", placeholder: "NSS" %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :rfc, "RFC" %><br>
+                <%= worker_form.text_field :rfc, required: true, class: "form-control", placeholder: "RFC" %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :curp, "CURP" %><br>
+                <%= worker_form.text_field :curp, required: true, class: "form-control", placeholder: "CURP" %>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <%= worker_form.label :tel, "Telefono" %><br>
+                <%= worker_form.text_field :tel, required: true, class: "form-control", placeholder: "Telefono" %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :cel, "Celular" %><br>
+                <%= worker_form.text_field :cel, required: true, class: "form-control", placeholder: "Celular" %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :fecha_nacimiento, "Fecha de Nacimiento" %><br>
+                <%= worker_form.date_field :fecha_nacimiento, required: true, class: "form-control" %>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <%= worker_form.label :marital_status, "Estado Civil" %><br>
+                <%= worker_form.select :marital_status, ["Solter@", "Casad@"], { include_blank: "Seleccionar", required: true }, { class: "form-control" } %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :email, "Correo" %><br>
+                <%= worker_form.email_field :email, required: true, class: "form-control", placeholder: "Correo" %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :employee_number, "Numero de Empleado" %><br>
+                <%= worker_form.text_field :employee_number, required: true, class: "form-control", placeholder: "Numero de Empleado" %>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <%= worker_form.label :fecha_ingreso, "Fecha Ingreso" %><br>
+                <%= worker_form.date_field :fecha_ingreso, required: true, class: "form-control" %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :sdi, "SDI" %><br>
+                <%= worker_form.number_field :sdi, required: true, class: "form-control", placeholder: "SDI" %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :sd, "SD" %><br>
+                <%= worker_form.number_field :sd, required: true, class: "form-control", placeholder: "SD" %>
+            </div>
+        </div>
+
+        <%= worker_form.fields_for :address_attributes, @worker.address do |address_form| %>
+            <h2>Direccion</h2>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <%= address_form.label :street, "Calle" %>
+                    <%= address_form.text_field :street, required: true, class: "form-control", placeholder: "Calle" %>
+                </div>
+                <div class="form-group col-md-4">
+                    <%= address_form.label :outdoor_number, "Numero Exterior" %>
+                    <%= address_form.text_field :outdoor_number, required: true, class: "form-control", placeholder: "Numero Exterior" %>
+                </div>
+                <div class="form-group col-md-4">
+                    <%= address_form.label :interior_number, "Numer Interior" %>
+                    <%= address_form.text_field :interior_number, class: "form-control", placeholder: "Numero Interior" %>
+                </div>
+                <div class="form-group col-md-4">
+                    <%= address_form.label :town, "Ciudad/Municipio" %>
+                    <%= address_form.text_field :town, required: true, class: "form-control", placeholder: "Ciudad/Municipio" %>
+                </div>
+                <div class="form-group col-md-4">
+                    <%= address_form.label :cp, "Codigo Postal" %>
+                    <%= address_form.text_field :cp, required: true, class: "form-control", placeholder: "Codigo Postal" %>
+                </div>
+            </div>
+        <% end %>
+
+        <h2>Documentos</h2>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <%= worker_form.label :avatar, "Imagen" %><br>
+                <%= image_tag(@worker.avatar_url, class: "card-img-top") %>
+                <%= worker_form.file_field :avatar, required: true, class: "form-control" %>
+                <%= worker_form.hidden_field :avatar_cache %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :identification, "INE/IFE" %><br>
+                <% @worker.identification_identifiers.each do |filename| %>
+                    <%= filename %>
+                <% end %>
+                <%= worker_form.file_field :identification, multiple: true ,required: true, class: "form-control" %>
+                <%= worker_form.hidden_field :identification_cache %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :proof_address, "Comprobante de Domicilio" %><br>
+                <%= @worker.proof_address_identifier %>
+                <%= worker_form.file_field :proof_address, multiple: true ,required: true, class: "form-control" %>
+                <%= worker_form.hidden_field :proof_address_cache %>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <%= worker_form.label :banorte_contract, "Contrato Banorte" %><br>
+                <%= @worker.banorte_contract_identifier %>
+                <%= worker_form.file_field :banorte_contract, required: true, class: "form-control" %>
+                <%= worker_form.hidden_field :banorte_contract_cache %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :work_contract, "Contrato Laboral" %><br>
+                <%= @worker.work_contract_identifier %>
+                <%= worker_form.file_field :work_contract ,required: true, class: "form-control" %>
+                <%= worker_form.hidden_field :work_contract_cache %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :imss_format, "Formato de Alta IMSS" %><br>
+                <%= @worker.imss_format_identifier %>
+                <%= worker_form.file_field :imss_format, required: true, class: "form-control" %>
+                <%= worker_form.hidden_field :imss_format_cache %>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <%= worker_form.label :imss_discharge_notice, "Aviso de Alta IMSS" %><br>
+                <%= @worker.imss_discharge_notice_identifier %>
+                <%= worker_form.file_field :imss_discharge_notice, required: true, class: "form-control" %>
+                <%= worker_form.hidden_field :imss_discharge_notice_cache %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :infonavit_retention_notice, "Aviso de Retención Infonavit" %><br>
+                <%= @worker.infonavit_retention_notice_identifier %>
+                <%= worker_form.file_field :infonavit_retention_notice ,required: true, class: "form-control" %>
+                <%= worker_form.hidden_field :infonavit_retention_notice_cache %>
+            </div>
+        </div>
+        <%= worker_form.submit btn_message, class: "btn btn-success btn-lg submit-button"%>
+    <% end %>
+</div>
+

@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20200207234138) do
   end
 
   create_table "workers", force: :cascade do |t|
-    t.string "nombre"
+    t.string "nombre_completo"
     t.string "nss"
     t.string "rfc"
     t.string "curp"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 20200207234138) do
     t.date "fecha_ingreso"
     t.float "sdi"
     t.float "sd"
+    t.string "sex"
+    t.string "job"
+    t.string "status"
+    t.string "marital_status"
+    t.string "work_contract"
+    t.string "imss_format"
+    t.string "banorte_contract"
+    t.string "imss_discharge_notice"
+    t.string "infonavit_retention_notice"
+    t.string "employee_number"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar"

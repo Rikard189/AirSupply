@@ -5,8 +5,8 @@ class CreateAddresses < ActiveRecord::Migration[5.1]
       t.string :outdoor_number
       t.string :interior_number
       t.string :town
-      t.integer :cp
-      t.references :worker, foreign_key: true
+      t.string :cp
+      t.belongs_to :worker, foreign_key: true
 
       t.timestamps
     end

@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'carrierwave', '~> 2.0'
 
+gem 'devise'
+
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.4.1'
 

@@ -1,5 +1,7 @@
 class WorkersController < ApplicationController
   before_action :set_worker, only: [:edit, :update]
+  before_action :authenticate_user!
+
   def index
     @workers = Worker.all
   end

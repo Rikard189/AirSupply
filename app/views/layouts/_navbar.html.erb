@@ -1,3 +1,14 @@
 <nav class="navbar navbar-dark bg-primary">
-    <%= link_to 'Air Supply', authenticated_root_path, class: "navbar-brand" %>
+    <div class="container container-fluid">
+        <%= link_to authenticated_root_path, class: "navbar-brand font-weight-bold"  do %>
+            Air Supply <%= fa_icon "industry"%>
+        <% end %>
+
+        <div class="navbar-text pull-right">
+            <%= link_to destroy_user_session_path, class: "navbar-link", method: :delete do %>
+                Cerrar Sesion <%= fa_icon "sign-out"%>
+            <% end %>
+
+        </div>
+    </div>
 </nav>

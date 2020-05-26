@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre_completo: MyString
+  parentesco: MyString
+  fecha_nacimiento: MyString
+  worker: one
+
+two:
+  nombre_completo: MyString
+  parentesco: MyString
+  fecha_nacimiento: MyString
+  worker: two

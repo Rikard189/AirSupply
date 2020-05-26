@@ -35,16 +35,16 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
+                <%= worker_form.label :sex, "Sexo" %><br>
+                <%= worker_form.select :sex, ['Masculino' , 'Feminino'], { include_blank: "Seleccionar", required: true }, { class: "form-control" } %>
+            </div>
+            <div class="form-group col-md-4">
                 <%= worker_form.label :marital_status, "Estado Civil" %><br>
                 <%= worker_form.select :marital_status, ["Solter@", "Casad@"], { include_blank: "Seleccionar", required: true }, { class: "form-control" } %>
             </div>
             <div class="form-group col-md-4">
                 <%= worker_form.label :email, "Correo" %><br>
                 <%= worker_form.email_field :email, required: true, class: "form-control", placeholder: "Correo" %>
-            </div>
-            <div class="form-group col-md-4">
-                <%= worker_form.label :employee_number, "Numero de Empleado" %><br>
-                <%= worker_form.text_field :employee_number, required: true, class: "form-control", placeholder: "Numero de Empleado" %>
             </div>
         </div>
         <div class="form-row">
@@ -62,37 +62,42 @@
             </div>
         </div>
 
-        <%= worker_form.fields_for :address_attributes, @worker.address do |address_form| %>
-            <h2>Direccion</h2>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <%= address_form.label :street, "Calle" %>
-                    <%= address_form.text_field :street, required: true, class: "form-control", placeholder: "Calle" %>
-                </div>
-                <div class="form-group col-md-4">
-                    <%= address_form.label :outdoor_number, "Numero Exterior" %>
-                    <%= address_form.text_field :outdoor_number, required: true, class: "form-control", placeholder: "Numero Exterior" %>
-                </div>
-                <div class="form-group col-md-4">
-                    <%= address_form.label :interior_number, "Numer Interior" %>
-                    <%= address_form.text_field :interior_number, class: "form-control", placeholder: "Numero Interior" %>
-                </div>
-                <div class="form-group col-md-4">
-                    <%= address_form.label :town, "Ciudad/Municipio" %>
-                    <%= address_form.text_field :town, required: true, class: "form-control", placeholder: "Ciudad/Municipio" %>
-                </div>
-                <div class="form-group col-md-4">
-                    <%= address_form.label :cp, "Codigo Postal" %>
-                    <%= address_form.text_field :cp, required: true, class: "form-control", placeholder: "Codigo Postal" %>
-                </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <%= worker_form.label :employee_number, "Numero de Empleado" %><br>
+                <%= worker_form.text_field :employee_number, required: true, class: "form-control", placeholder: "Numero de Empleado" %>
             </div>
-        <% end %>
+        </div>
+
+        <h2>Direccion</h2>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <%= worker_form.label :street, "Calle" %>
+                <%= worker_form.text_field :street, required: true, class: "form-control", placeholder: "Calle" %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :outdoor_number, "Numero Exterior" %>
+                <%= worker_form.text_field :outdoor_number, required: true, class: "form-control", placeholder: "Numero Exterior" %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :interior_number, "Numer Interior" %>
+                <%= worker_form.text_field :interior_number, class: "form-control", placeholder: "Numero Interior" %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :town, "Ciudad/Municipio" %>
+                <%= worker_form.text_field :town, required: true, class: "form-control", placeholder: "Ciudad/Municipio" %>
+            </div>
+            <div class="form-group col-md-4">
+                <%= worker_form.label :cp, "Codigo Postal" %>
+                <%= worker_form.text_field :cp, required: true, class: "form-control", placeholder: "Codigo Postal" %>
+            </div>
+        </div>
 
         <h2>Documentos</h2>
         <div class="form-row">
             <div class="form-group col-md-4">
-                <%= worker_form.label :avatar, "Imagen" %><br>
-                <%= image_tag(@worker.avatar_url, class: "card-img-top") %>
+                <%= worker_form.label :avatar, "Foto de Trabajador" %><br>
+                <%= image_tag(@worker.avatar_url, class: "card-img-top") if @worker.avatar?%>
                 <%= worker_form.file_field :avatar, required: true, class: "form-control" %>
                 <%= worker_form.hidden_field :avatar_cache %>
             </div>

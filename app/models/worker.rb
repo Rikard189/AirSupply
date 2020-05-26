@@ -1,7 +1,8 @@
 class Worker < ApplicationRecord
-    has_one :address, dependent: :destroy
+    has_many :beneficiaries
 
-    accepts_nested_attributes_for :address
+    accepts_nested_attributes_for :beneficiaries
+
 
     mount_uploader :avatar, AvatarUploader
     mount_uploader :proof_address, ProofAddressUploader

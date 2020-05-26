@@ -44,8 +44,12 @@ class WorkersController < ApplicationController
       :imss_discharge_notice, :work_contract, :status,
       :infonavit_retention_notice, :imss_format,
       :marital_status, :employee_number, :cel,
-      address_attributes: [ :street, :outdoor_number,
-        :interior_number, :town, :cp ]
+      :street, :outdoor_number, :interior_number, 
+      :town, :cp, beneficiary_attributes: [ 
+        :nombre_completo, :parentesco, :fecha_nacimiento,
+        :street, :outdoor_number, :interior_number, :town,
+        :cp
+      ]
     )
   end 
 end

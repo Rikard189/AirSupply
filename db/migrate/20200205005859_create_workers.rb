@@ -22,6 +22,11 @@ class CreateWorkers < ActiveRecord::Migration[5.1]
       t.string :infonavit_retention_notice
       t.string :employee_number
       t.string :email
+      t.string :street
+      t.string :outdoor_number
+      t.string :interior_number
+      t.string :town
+      t.string :cp
       t.timestamps
     end
   end

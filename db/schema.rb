@@ -10,12 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200407021338) do
+ActiveRecord::Schema.define(version: 20200409222805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "addresses", force: :cascade do |t|
+  create_table "beneficiaries", force: :cascade do |t|
+    t.string "nombre_completo"
+    t.string "parentesco"
+    t.date "fecha_nacimiento"
     t.string "street"
     t.string "outdoor_number"
     t.string "interior_number"
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 20200407021338) do
     t.bigint "worker_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["worker_id"], name: "index_addresses_on_worker_id"
+    t.index ["worker_id"], name: "index_beneficiaries_on_worker_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,6 +64,11 @@ ActiveRecord::Schema.define(version: 20200407021338) do
     t.string "infonavit_retention_notice"
     t.string "employee_number"
     t.string "email"
+    t.string "street"
+    t.string "outdoor_number"
+    t.string "interior_number"
+    t.string "town"
+    t.string "cp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar"
@@ -68,5 +76,5 @@ ActiveRecord::Schema.define(version: 20200407021338) do
     t.string "proof_address"
   end
 
-  add_foreign_key "addresses", "workers"
+  add_foreign_key "beneficiaries", "workers"
 end

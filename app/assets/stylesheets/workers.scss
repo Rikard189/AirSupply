@@ -1,23 +1,27 @@
 // Place all the styles related to the Workers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.workers {
+
+.header {
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.workers, .worker {
     margin-top: 30px;
-
-    .header {
-        padding-bottom: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .card-img-top {
-        height: 100%;
-        max-height: 354px;
+    .embed-responsive .card-img-top {
+        object-fit: cover;
     }
 }
 
-.new-worker {
+.worker-form {
     margin-top: 30px;
     margin-bottom: 30px;
+
+    h2 {
+        font-weight: 900;;
+    }
 }

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :workers, only: %i[index new create edit update]
+  resources :workers, only: %i[show index new create edit update]
   devise_for :users
 
   devise_scope :user do

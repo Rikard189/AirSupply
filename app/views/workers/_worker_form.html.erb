@@ -1,4 +1,10 @@
-<div class="new-worker container">
+
+
+
+<div class="worker-form container">
+    <div class="header">
+        <%= button_to "Regresar", workers_path, method: :get ,class: "btn btn-success"%>
+    </div>
     <%= form_for(@worker, url: {action: action_type}) do |worker_form|%>
         <h2>Informacion de Trabajador</h2>
         <div class="form-group">
@@ -61,7 +67,6 @@
                 <%= worker_form.number_field :sd, required: true, class: "form-control", placeholder: "SD" %>
             </div>
         </div>
-
         <div class="form-row">
             <div class="form-group col-md-4">
                 <%= worker_form.label :employee_number, "Numero de Empleado" %><br>
@@ -93,12 +98,55 @@
             </div>
         </div>
 
+        <h2>Datos de Beneficiario</h2>
+        <%= worker_form.fields_for :beneficiary do |beneficiary_form| %>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <%= beneficiary_form.label :nombre_completo, "Nombre completo" %>
+                    <%= beneficiary_form.text_field :nombre_completo, required: true, class: "form-control", placeholder: "Nombre Completo" %>
+                </div>
+                <div class="form-group col-md-4">
+                    <%= beneficiary_form.label :parentesco, "Parentesco" %>
+                    <%= beneficiary_form.text_field :parentesco, required: true, class: "form-control", placeholder: "Parentesco" %>
+                </div>
+                <div class="form-group col-md-4">
+                    <%= beneficiary_form.label :fecha_nacimiento, "Fecha Nacimiento" %>
+                    <%= beneficiary_form.date_field :fecha_nacimiento, required: true, class: "form-control" %>
+                </div>
+            </div>
+
+            <h4>Direccion de Beneficiario</h4>
+            <div class="form-row">
+                
+                <div class="form-group col-md-4">
+                    <%= beneficiary_form.label :street, "Calle" %>
+                    <%= beneficiary_form.text_field :street, required: true, class: "form-control", placeholder: "Calle" %>
+                </div>
+                <div class="form-group col-md-4">
+                    <%= beneficiary_form.label :outdoor_number, "Numero Exterior" %>
+                    <%= beneficiary_form.text_field :outdoor_number, required: true, class: "form-control", placeholder: "Numero Exterior" %>
+                </div>
+                <div class="form-group col-md-4">
+                    <%= beneficiary_form.label :interior_number, "Numero Interior" %>
+                    <%= beneficiary_form.text_field :interior_number, class: "form-control", placeholder: "Numero Interior" %>
+                </div>
+                <div class="form-group col-md-4">
+                    <%= beneficiary_form.label :town, "Ciudad/Municipio" %>
+                    <%= beneficiary_form.text_field :town, class: "form-control", placeholder: "Ciudad/Municipio" %>
+                </div>
+                <div class="form-group col-md-4">
+                    <%= beneficiary_form.label :cp, "Codigo Postal" %>
+                    <%= beneficiary_form.text_field :cp, class: "form-control", placeholder: "Codigo Postal" %>
+                </div>
+            </div>
+        <% end %>
+
         <h2>Documentos</h2>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <%= worker_form.label :avatar, "Foto de Trabajador" %><br>
                 <%= image_tag(@worker.avatar_url, class: "card-img-top") if @worker.avatar?%>
-                <%= worker_form.file_field :avatar, required: true, class: "form-control" %>
+                <%= worker_form.file_field :avatar, required: (action_type == "create"), class: "form-control" %>
                 <%= worker_form.hidden_field :avatar_cache %>
             </div>
             <div class="form-group col-md-4">
@@ -106,13 +154,13 @@
                 <% @worker.identification_identifiers.each do |filename| %>
                     <%= filename %>
                 <% end %>
-                <%= worker_form.file_field :identification, multiple: true ,required: true, class: "form-control" %>
+                <%= worker_form.file_field :identification, multiple: true ,required: (action_type == "create"), class: "form-control" %>
                 <%= worker_form.hidden_field :identification_cache %>
             </div>
             <div class="form-group col-md-4">
                 <%= worker_form.label :proof_address, "Comprobante de Domicilio" %><br>
                 <%= @worker.proof_address_identifier %>
-                <%= worker_form.file_field :proof_address, multiple: true ,required: true, class: "form-control" %>
+                <%= worker_form.file_field :proof_address,required: (action_type == "create"), class: "form-control" %>
                 <%= worker_form.hidden_field :proof_address_cache %>
             </div>
         </div>
@@ -120,19 +168,19 @@
             <div class="form-group col-md-4">
                 <%= worker_form.label :banorte_contract, "Contrato Banorte" %><br>
                 <%= @worker.banorte_contract_identifier %>
-                <%= worker_form.file_field :banorte_contract, required: true, class: "form-control" %>
+                <%= worker_form.file_field :banorte_contract, required: (action_type == "create"), class: "form-control" %>
                 <%= worker_form.hidden_field :banorte_contract_cache %>
             </div>
             <div class="form-group col-md-4">
                 <%= worker_form.label :work_contract, "Contrato Laboral" %><br>
                 <%= @worker.work_contract_identifier %>
-                <%= worker_form.file_field :work_contract ,required: true, class: "form-control" %>
+                <%= worker_form.file_field :work_contract ,required: (action_type == "create"), class: "form-control" %>
                 <%= worker_form.hidden_field :work_contract_cache %>
             </div>
             <div class="form-group col-md-4">
                 <%= worker_form.label :imss_format, "Formato de Alta IMSS" %><br>
                 <%= @worker.imss_format_identifier %>
-                <%= worker_form.file_field :imss_format, required: true, class: "form-control" %>
+                <%= worker_form.file_field :imss_format, required: (action_type == "create"), class: "form-control" %>
                 <%= worker_form.hidden_field :imss_format_cache %>
             </div>
         </div>
@@ -140,13 +188,13 @@
             <div class="form-group col-md-4">
                 <%= worker_form.label :imss_discharge_notice, "Aviso de Alta IMSS" %><br>
                 <%= @worker.imss_discharge_notice_identifier %>
-                <%= worker_form.file_field :imss_discharge_notice, required: true, class: "form-control" %>
+                <%= worker_form.file_field :imss_discharge_notice, required: (action_type == "create"), class: "form-control" %>
                 <%= worker_form.hidden_field :imss_discharge_notice_cache %>
             </div>
             <div class="form-group col-md-4">
                 <%= worker_form.label :infonavit_retention_notice, "Aviso de Retención Infonavit" %><br>
                 <%= @worker.infonavit_retention_notice_identifier %>
-                <%= worker_form.file_field :infonavit_retention_notice ,required: true, class: "form-control" %>
+                <%= worker_form.file_field :infonavit_retention_notice ,required: (action_type == "create"), class: "form-control" %>
                 <%= worker_form.hidden_field :infonavit_retention_notice_cache %>
             </div>
         </div>

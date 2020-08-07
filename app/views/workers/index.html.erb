@@ -3,21 +3,28 @@
         <h1>Trabajadores</h1>
         <%= button_to "Nuevo Trabajador", new_worker_path, method: :get ,class: "btn btn-success"%>
     </div>
-    <div class="card-columns">
+
+    <%= form_tag(workers_path, method: :get, class: "form-inline mb-4") do %>
+        <%= text_field_tag(:search, params[:search], placeholder: "Buscar Trabajador", class: "form-control col-sm-6 mx-sm-3") %>
+        <%= submit_tag("Buscar", nombre_completo: nil, class: "btn btn-primary")%>
+    <% end %>
+
+    <div class="row">
         <% @workers.each do |worker| %>
-            <div class="card">
-                <%# <img class="card-img-top" src="https://s3.envato.com/files/238377394/Warh_osl2_%20008.jpg" alt="Card image cap"> %>
-                <%= image_tag(worker.avatar_url, class: "card-img-top", alt: "Imagen Trabajador") %>
-                <div class="card-body">
-                    <h5 class="card-title"><%= worker.nombre_completo %></h5>
-                    <p class="card-text">
-                        <ul>
-                            <li>NSS: <%= worker.nss %></li>
-                            <li>RFC: <%= worker.rfc %></li>
-                            <li>CURP: <%= worker.curp %></li>
-                        <ul>
-                    </p>
-                    <a href="#" class="btn btn-primary">Mas Informacion</a>
+            <div class="col-md-4">
+                <div class="card mb-3 shadow-sm">
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <%= image_tag(worker.avatar_url, class: "card-img-top embed-responsive-item", alt: "Imagen Trabajador") %>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold"><%= worker.nombre_completo %></h5>
+                        <p class="card-text">
+                            NSS: <%= worker.nss %> <br>
+                            RFC: <%= worker.rfc %> <br>
+                            CURP: <%= worker.curp %> <br>
+                        </p>
+                        <%= button_to "Mas Informacion", worker, method: :get, class: "btn btn-primary"%>
+                    </div>
                 </div>
             </div>
         <% end %>

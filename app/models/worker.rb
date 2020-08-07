@@ -1,7 +1,7 @@
 class Worker < ApplicationRecord
-    has_many :beneficiaries
+    has_one :beneficiary
 
-    accepts_nested_attributes_for :beneficiaries
+    accepts_nested_attributes_for :beneficiary
 
 
     mount_uploader :avatar, AvatarUploader
@@ -12,4 +12,13 @@ class Worker < ApplicationRecord
     mount_uploader :work_contract, WorkContractUploader
     mount_uploaders :identification, IdentificationUploader
     mount_uploader :imss_format, ImssFormatUploader
+
+    def self.search(search)
+        if search
+            Worker.where("nombre_completo LIKE :query", query: "%#{sanitize_sql_like(search.capitalize())}%")
+        else
+            Worker.all
+        end
+
+    end
 end
